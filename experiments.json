@@ -1,0 +1,59 @@
+{
+  "seed": 42,
+  "validation_users": 3000,
+  "popularity": [
+    {
+      "min_ratings": 10
+    },
+    {
+      "min_ratings": 30
+    },
+    {
+      "min_ratings": 60
+    }
+  ],
+  "content": [
+    {
+      "max_tags": 10
+    },
+    {
+      "max_tags": 30
+    }
+  ],
+  "item_cf": [
+    {
+      "neighbors": 50,
+      "shrinkage": 10
+    },
+    {
+      "neighbors": 150,
+      "shrinkage": 10
+    },
+    {
+      "neighbors": 300,
+      "shrinkage": 30
+    }
+  ],
+  "svd": [
+    {
+      "factors": 32,
+      "epochs": 20,
+      "regularization": 0.1
+    },
+    {
+      "factors": 64,
+      "epochs": 30,
+      "regularization": 0.1
+    },
+    {
+      "factors": 64,
+      "epochs": 40,
+      "regularization": 0.05
+    },
+    {
+      "factors": 100,
+      "epochs": 40,
+      "regularization": 0.15
+    }
+  ]
+}
