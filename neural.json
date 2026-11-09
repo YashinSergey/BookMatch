@@ -1,0 +1,9 @@
+{
+  "seed": 42,
+  "train_users": 15000,
+  "negatives": 20,
+  "candidates": 100,
+  "hidden": [32, 16],
+  "epochs": 20,
+  "blend": [0, 0.25, 0.5, 0.75, 1]
+}
