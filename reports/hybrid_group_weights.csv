@@ -1,0 +1,15 @@
+group,users,weights,ndcg@10
+short,1175,"{""Popularity"": 0.25, ""Content"": 0.25, ""ItemCF"": 0.25, ""SVD"": 0.25}",0.1366721758554206
+active,1825,"{""Popularity"": 0.25, ""Content"": 0.25, ""ItemCF"": 0.25, ""SVD"": 0.25}",0.16033825472287233
+short,1175,"{""Popularity"": 0.0, ""Content"": 0.0, ""ItemCF"": 1.0, ""SVD"": 0.0}",0.13744074953766855
+active,1825,"{""Popularity"": 0.0, ""Content"": 0.0, ""ItemCF"": 1.0, ""SVD"": 0.0}",0.17067417191764117
+short,1175,"{""Popularity"": 0.0, ""Content"": 0.1, ""ItemCF"": 0.9, ""SVD"": 0.0}",0.13863928914057405
+active,1825,"{""Popularity"": 0.0, ""Content"": 0.1, ""ItemCF"": 0.9, ""SVD"": 0.0}",0.17146826605472565
+short,1175,"{""Popularity"": 0.0, ""Content"": 0.2, ""ItemCF"": 0.8, ""SVD"": 0.0}",0.13956801732498572
+active,1825,"{""Popularity"": 0.0, ""Content"": 0.2, ""ItemCF"": 0.8, ""SVD"": 0.0}",0.17088571326217813
+short,1175,"{""Popularity"": 0.0, ""Content"": 0.4, ""ItemCF"": 0.6, ""SVD"": 0.0}",0.13876638500001273
+active,1825,"{""Popularity"": 0.0, ""Content"": 0.4, ""ItemCF"": 0.6, ""SVD"": 0.0}",0.1667701854207752
+short,1175,"{""Popularity"": 0.05, ""Content"": 0.15, ""ItemCF"": 0.75, ""SVD"": 0.05}",0.14043831768442178
+active,1825,"{""Popularity"": 0.05, ""Content"": 0.15, ""ItemCF"": 0.75, ""SVD"": 0.05}",0.17082227629380575
+short,1175,"{""Popularity"": 0.0, ""Content"": 0.15, ""ItemCF"": 0.75, ""SVD"": 0.1}",0.14055444686643584
+active,1825,"{""Popularity"": 0.0, ""Content"": 0.15, ""ItemCF"": 0.75, ""SVD"": 0.1}",0.17147250568817157

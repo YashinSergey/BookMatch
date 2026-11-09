@@ -2,6 +2,9 @@
   "seed": 42,
   "validation_users": 3000,
   "candidates": 100,
+  "short_history": 5,
+  "diversity": [0, 0.05, 0.1, 0.2],
+  "max_ndcg_loss": 0.01,
   "weights": [
     {"Popularity": 0.25, "Content": 0.25, "ItemCF": 0.25, "SVD": 0.25},
     {"Popularity": 0.0, "Content": 0.0, "ItemCF": 1.0, "SVD": 0.0},

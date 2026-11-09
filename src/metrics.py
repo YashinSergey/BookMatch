@@ -38,3 +38,12 @@ def evaluate(model, heldout, users=None, ks=(5, 10), batch_size=256):
         predictions = model.predict(heldout.user_id.to_numpy(), heldout.book_id.to_numpy())
         result['rmse'] = float(np.sqrt(np.mean((predictions - heldout.rating.to_numpy()) ** 2)))
     return result
+
+
+def list_diversity(features, items):
+    if len(items) < 2:
+        return 0.0
+    content = features[items]
+    similarity = (content @ content.T).toarray()
+    pairs = np.triu_indices(len(items), k=1)
+    return float(np.mean(1 - similarity[pairs]))
