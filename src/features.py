@@ -24,7 +24,6 @@ class HybridFeatures:
         links = links[(links['count'] > 0) & ~links.tag_name.isin(SERVICE_TAGS)]
         links = links.merge(books[['book_id', 'goodreads_book_id']], on='goodreads_book_id')
         links = links.drop_duplicates(['book_id', 'tag_name'])
-        # Частые теги служат тематическими признаками
         topics = links.tag_name.value_counts().head(20).index
         links = links[links.tag_name.isin(topics)]
         themes = pd.crosstab(links.book_id, links.tag_name).clip(upper=1)

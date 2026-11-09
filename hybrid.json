@@ -1,0 +1,14 @@
+{
+  "seed": 42,
+  "validation_users": 3000,
+  "candidates": 100,
+  "weights": [
+    {"Popularity": 0.25, "Content": 0.25, "ItemCF": 0.25, "SVD": 0.25},
+    {"Popularity": 0.0, "Content": 0.0, "ItemCF": 1.0, "SVD": 0.0},
+    {"Popularity": 0.0, "Content": 0.1, "ItemCF": 0.9, "SVD": 0.0},
+    {"Popularity": 0.0, "Content": 0.2, "ItemCF": 0.8, "SVD": 0.0},
+    {"Popularity": 0.0, "Content": 0.4, "ItemCF": 0.6, "SVD": 0.0},
+    {"Popularity": 0.05, "Content": 0.15, "ItemCF": 0.75, "SVD": 0.05},
+    {"Popularity": 0.0, "Content": 0.15, "ItemCF": 0.75, "SVD": 0.1}
+  ]
+}
