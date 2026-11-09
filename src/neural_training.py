@@ -18,7 +18,7 @@ def training_pairs(train, books, tags, book_tags, params, weights, config):
     users = np.sort(rng.choice(targets.user_id, min(config['train_users'], len(targets)), replace=False))
     target_books = targets.set_index('user_id').book_id
     with threadpool_limits(limits=2):
-        features = HybridFeatures().fit(inner_train, books, tags, book_tags)
+        features = HybridFeatures().fit(inner_train, books, tags, book_tags, **params['Content'])
         data = features.data
         models = {
             'Popularity': Popularity(data, **params['Popularity']),
@@ -46,6 +46,8 @@ def training_pairs(train, books, tags, book_tags, params, weights, config):
                 covered += 1
             if sampled:
                 matrices.append(candidate_features(features, np.array(kept_users), sampled))
+    if not matrices:
+        raise ValueError('В обучающий пул не попали положительные пары')
     summary = {'sampled_users': len(users), 'covered_users': covered,
                'positive_pairs': covered, 'negative_pairs': len(labels) - covered}
     return np.vstack(matrices).astype(np.float32), np.array(labels), summary

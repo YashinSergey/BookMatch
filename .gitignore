@@ -17,3 +17,6 @@ data/
 # IDE settings
 .idea/
 .vscode/
+
+# Generated run
+reports/pipeline/

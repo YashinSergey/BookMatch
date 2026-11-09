@@ -6,9 +6,9 @@ from .data import InteractionData
 
 
 class HybridFeatures:
-    def fit(self, train, books, tags, book_tags):
+    def fit(self, train, books, tags, book_tags, max_tags=30):
         self.data = InteractionData(train, books)
-        self.content = ContentBased(self.data).fit(books, tags, book_tags, max_tags=30)
+        self.content = ContentBased(self.data).fit(books, tags, book_tags, max_tags=max_tags)
         self.users = train.groupby('user_id').rating.agg(
             user_mean='mean', user_count='size', user_std='std',
         )

@@ -20,10 +20,14 @@ class Hybrid(Recommender):
         for model in self.models.values():
             values = model.score(user_indices).copy()
             values[rows, cols] = -np.inf
-            selected.append(top_indices(values, self.candidates))
+            indices = top_indices(values, self.candidates)
+            available = np.take_along_axis(np.isfinite(values), indices, axis=1)
+            selected.append(np.where(available, indices, -1))
             finite = np.isfinite(values)
             low = np.where(finite, values, np.inf).min(axis=1, keepdims=True)
             high = np.where(finite, values, -np.inf).max(axis=1, keepdims=True)
+            low[~finite.any(axis=1)] = 0
+            high[~finite.any(axis=1)] = 0
             span = high - low
             normalized = np.zeros_like(values)
             np.divide(values - low, span, out=normalized, where=finite & (span > 0))
@@ -31,7 +35,7 @@ class Hybrid(Recommender):
         result = []
         for row, user in enumerate(user_indices):
             items = np.unique(np.concatenate([indices[row] for indices in selected]))
-            items = np.setdiff1d(items, self.data.seen[user].indices)
+            items = np.setdiff1d(items[items >= 0], self.data.seen[user].indices)
             values = np.column_stack([score[row, items] for score in scores])
             result.append((items, values))
         return result
