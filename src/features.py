@@ -1,8 +1,16 @@
 import numpy as np
 import pandas as pd
 
-from .content import ContentBased, SERVICE_TAGS
+from .content import ContentBased
 from .data import InteractionData
+
+
+TOPICS = [
+    'fiction', 'non-fiction', 'fantasy', 'science-fiction', 'mystery',
+    'thriller', 'romance', 'historical-fiction', 'young-adult', 'children',
+    'biography', 'memoir', 'history', 'poetry', 'horror', 'crime',
+    'classics', 'adventure', 'humor', 'philosophy',
+]
 
 
 class HybridFeatures:
@@ -21,13 +29,14 @@ class HybridFeatures:
 
         links = book_tags.merge(tags, on='tag_id')
         links['tag_name'] = links.tag_name.str.lower().str.strip()
-        links = links[(links['count'] > 0) & ~links.tag_name.isin(SERVICE_TAGS)]
+        links['tag_name'] = links.tag_name.replace({
+            'nonfiction': 'non-fiction', 'sci-fi': 'science-fiction', 'childrens': 'children',
+        })
+        links = links[(links['count'] > 0) & links.tag_name.isin(TOPICS)]
         links = links.merge(books[['book_id', 'goodreads_book_id']], on='goodreads_book_id')
         links = links.drop_duplicates(['book_id', 'tag_name'])
-        topics = links.tag_name.value_counts().head(20).index
-        links = links[links.tag_name.isin(topics)]
         themes = pd.crosstab(links.book_id, links.tag_name).clip(upper=1)
-        themes = themes.reindex(index=self.data.book_ids, columns=topics, fill_value=0)
+        themes = themes.reindex(index=self.data.book_ids, columns=TOPICS, fill_value=0)
         self.books = self.books.join(themes.add_prefix('tag_'))
         return self
 
